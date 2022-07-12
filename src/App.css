@@ -1,0 +1,7 @@
+body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif ;
+    /* backgroundImage:`url${image}`; */
+    background-image: url('./img.jpg') ;
+}
