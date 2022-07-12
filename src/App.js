@@ -23,6 +23,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import "./component/Slatemate.css"
+import "./component/PhotoAlbum.css"
 
 const style = {
   position: "absolute",
