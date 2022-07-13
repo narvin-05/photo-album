@@ -2,12 +2,13 @@ import React from "react";
 import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import PhotoAlbum from "./component/PhotoAlbum";
 import Slatemate from "./component/Slatemate";
-// import {
-//   getAuth,
-//   RecaptchaVerifier,
-//   signInWithPhoneNumber,
-// } from "firebase/auth";
-// import app from "./firebase";
+import {
+  getAuth,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+} from "firebase/auth";
+
+import app from "./firebase";
 
 import {
   Box,
@@ -41,37 +42,37 @@ const App = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  // const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
 
-  // const auth = getAuth(app);
+  const auth = getAuth(app);
 
-  // const sendOtp = (e) => {
-  //   console.log(phoneNumber);
-  //   window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-  //     // 'size': 'invisible',
-  //     'callback': (response) => {
-  //       console.log("Hii");
-  //       signInWithPhoneNumber(auth,phoneNumber,window.recaptchaVerifier);
-  //     },
-  //     'expired-callback': () => {
+  const sendOtp = (e) => {
+    console.log(phoneNumber);
+    window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
+      // 'size': 'invisible',
+      'callback': (response) => {
+        console.log("Hii");
+        signInWithPhoneNumber(auth,phoneNumber,window.recaptchaVerifier);
+      },
+      'expired-callback': () => {
         
-  //     }
-  //   }, auth);
-  //   signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
-  //     .then((confirmationResult) => {
-  //       // console.log(confirmationResult);
-  //       console.log("hello");
-  //       window.confirmationResult = confirmationResult;
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
+      }
+    }, auth);
+    signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifier)
+      .then((confirmationResult) => {
+        // console.log(confirmationResult);
+        console.log("hello");
+        window.confirmationResult = confirmationResult;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  // const temmp = (e) => {
-  //   e.preventDefault();
-  //   console.log("Hello");
-  // };
+  const temmp = (e) => {
+    e.preventDefault();
+    console.log("Hello");
+  };
 
   return (
     <>
@@ -108,16 +109,16 @@ const App = () => {
                 fullWidth
                 label="Enter your phone number"
                 id="fullWidth"
-                // onChange={(e) => {
-                  // setPhoneNumber(e.target.value);
-                // }}
+                onChange={(e) => {
+                  setPhoneNumber(e.target.value);
+                }}
               />
-              {/* <div id="recaptcha-container">
+              <div id="recaptcha-container">
 
-              </div> */}
+              </div>
               <Box sx={{ mt: 3 }}>
                 <Button
-                  // onClick={sendOtp}
+                  onClick={sendOtp}
                   // onSubmit={temmp}
                   variant="contained"
                   color="primary"
@@ -126,7 +127,7 @@ const App = () => {
                 </Button>
               </Box>
               {/* <Form onSubmit={sendOtp}>
-                <Button onSubmit={sendOtp}    variant="contained" color="primary">Click me</Button>
+                <Button onSubmit={sendOtp}  variant="contained" color="primary">Click me</Button>
               </Form> */}
             </Box>
           </Modal>
